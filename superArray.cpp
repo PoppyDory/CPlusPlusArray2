@@ -7,7 +7,7 @@ int *aggiungiInFondo(int base[], int lunghezza, int nuovo)
 {
     int lunghezzaNuovo = lunghezza + 1;
     int arrayNuovo[lunghezzaNuovo];
-    for (int i = 0; i < lunghezzaNuovo + 1; i++)
+    for (int i = 0; i < lunghezzaNuovo; i++)
     {
         arrayNuovo[i] = base[i];
     }
@@ -112,11 +112,33 @@ int *aggiornaInPosizione(int base[], int lunghezza, int valore, int posizione)
 
 int *rimuovi(int base[], int lunghezza, int indice)
 {
+    int lunghezzaNuovo =lunghezza-1; 
+    int arrayNuovo[lunghezzaNuovo];
+    for (int i = 0; i< lunghezzaNuovo; i++ )
+    {   
+        if (i<indice)
+        {
+        arrayNuovo[i]=base[i];
+        }
+    }
+    arrayNuovo[indice] = base[indice+1];
+    for ( int i = 0; i < lunghezzaNuovo; i++)
+    {
+        arrayNuovo[indice+1] = base[i];
+    }
+
+
+    cout<< endl<< "Elimina l'elemento in posizione "<< indice<< endl;
+    for (int i = 0; i< lunghezzaNuovo; i++)
+    {
+        cout<< arrayNuovo[i]<<" ";
+    }
+    return arrayNuovo;
 }
 
 int main()
 {
-    int arrayBase[5] = {4, 5, 3, 2, 6};
+    int arrayBase[5] = {4, 5, 3, 7, 6};
     int lunghezzaBase = sizeof(arrayBase) / sizeof(arrayBase[0]);
     int numero = 8;
     int posizione = 1;
@@ -128,4 +150,5 @@ int main()
     int *arrayAggiungiInPosizione = aggiungiInPosizione(arrayBase, lunghezzaBase, numero, posizione);
     cout <<endl<<"Il numero "<< cerca<<" si trova il posizione "<<  trovaPosizione( arrayBase, lunghezzaBase, cerca );
     int *arrayAggiornaInPosizione = aggiornaInPosizione(arrayBase, lunghezzaBase, valore, posizione);
+    int *arrayRimuovi= rimuovi(arrayBase, lunghezzaBase, posizione);
 }
