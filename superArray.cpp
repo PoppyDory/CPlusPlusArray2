@@ -74,6 +74,15 @@ int *aggiungiInPosizione(int base[], int lunghezza, int nuovo, int posizione)
 
 int trovaPosizione(int base[], int lunghezza, int cerca)
 {
+    int indice=0;
+    for (int i=0; i<lunghezza; i++ )
+    {
+        if(base[i]==cerca)
+        {
+            indice = i;
+        }
+    }
+    return indice;
 }
 
 int *aggiornaInPosizione(int base[], int lunghezza, int valore, int posizione)
@@ -90,7 +99,11 @@ int main()
     int lunghezzaBase = sizeof(arrayBase) / sizeof(arrayBase[0]);
     int numero = 8;
     int posizione = 3;
+    int cerca=6; 
+
     int *arrayNuovo = aggiungiInFondo(arrayBase, lunghezzaBase, numero);
     int *arrayNuovo2 = aggiungiInTesta(arrayBase, lunghezzaBase, numero);
     int *arrayNuovo3 = aggiungiInPosizione(arrayBase, lunghezzaBase, numero, posizione);
+    cout <<endl<<"Il numero "<< cerca<<" si trova il posizione "<<  trovaPosizione( arrayBase, lunghezzaBase, cerca );
+
 }
