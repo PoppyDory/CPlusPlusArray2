@@ -134,33 +134,31 @@ int *rimuovi(int base[], int lunghezza, int indice)
     }
     return arrayNuovo;
 }
+
 int *rimuoviNumero(int base[], int lunghezza, int elemento)
 {
     int contatore = 0;
 
     for (int i = 0; i < lunghezza; i++)
     {
-        if (base[i] == elemento)
+        if (base[i] == elemento) //
         {
             contatore++;
         }
     }
+
     int *arrayNuovo = new int[lunghezza - contatore];
+    int j=0; //indice di scrittura
+
     for (int i = 0; i < lunghezza; i++)
     {
-        int indice;
-        if (base[i] == elemento)
+
+        if (base[i] != elemento) // vado a leggere gli elementi di base 
         {
-            indice = i;
-            for (int i = 0; i < indice; i++)
-            {
-                arrayNuovo[i] = base[i];
-            }
-            for (int i = indice; i < lunghezza; i++)
-            {
-                arrayNuovo[i] = base[i + 1];
-            }
+            arrayNuovo[j] = base[i];// se non trovo l'elento da eliminare riscivo gli elementi dell' array base
+            j++;
         }
+        
     }
     cout << endl
          << "Elimina l'elemento " << elemento << endl;
@@ -173,13 +171,13 @@ int *rimuoviNumero(int base[], int lunghezza, int elemento)
 
 int main()
 {
-    int arrayBase[] = {4, 5, 3, 7, 7, 1, 6};
+    int arrayBase[] = {6, 8, 7, 8, 8, 9};
     int lunghezzaBase = sizeof(arrayBase) / sizeof(arrayBase[0]);
     int numero = 8;
     int posizione = 1;
     int cerca = 6;
-    int elemento = 7;
-
+    int elimina= 8;
+    /*
     int *arrayAggiungiInFondo = aggiungiInFondo(arrayBase, lunghezzaBase, numero);
     cout << endl
          << "------------" << endl;
@@ -198,6 +196,6 @@ int main()
          << "------------" << endl;
     int *arrayRimuovi = rimuovi(arrayBase, lunghezzaBase, posizione);
     cout << endl
-         << "------------" << endl;
-    int *arrayRimuoviNumero = rimuoviNumero(arrayBase, lunghezzaBase, elemento);
+         << "------------" << endl; */
+    int *arrayRimuoviNumero = rimuoviNumero(arrayBase, lunghezzaBase, elimina);
 }
